@@ -1,3 +1,6 @@
+
+
+
 import { Injectable } from '@nestjs/common';
 import { Customer } from './interfaces/customer.interface';
 import { CreateCustomerDto } from './dto/create-customer.dto';
@@ -11,12 +14,14 @@ export class CustomerService {
   }
 
   addCustomer(createCustomerDto: CreateCustomerDto): Customer {
-    const newCustomer = this.customers.push({
+    const newCustomer: Customer = {
       id: this.customers.length + 1,
       ...createCustomerDto,
-    }) as any;
+    };
 
     this.customers.push(newCustomer);
+
+    console.log('✅ New Customer Added:', newCustomer);
     return newCustomer;
   }
 }
